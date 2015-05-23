@@ -55,6 +55,7 @@ class Subscriptions(APIView):
             self.api.braintree.subscription.post({
                 'paymethod': pay_method_uri,
                 'plan': form.cleaned_data['plan_id'],
+                'id': transaction.uid_pay
             })
         except HttpClientError, exc:
             log.debug('caught bad request from solitude: {e}'.format(e=exc))

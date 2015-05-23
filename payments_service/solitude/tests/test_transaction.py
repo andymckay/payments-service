@@ -1,3 +1,4 @@
+import mock
 from nose.tools import eq_, ok_
 
 from payments_service.solitude import constants
@@ -27,7 +28,8 @@ class TestTransaction(TransactionTestCase):
             'provider': constants.PROVIDER_BRAINTREE,
             'buyer': '/generic/buyer/pk/',
             'seller': '/generic/seller/123/',
-            'type': constants.TYPE_PAYMENT
+            'type': constants.TYPE_PAYMENT,
+            'uid_pay': mock.ANY
         })
 
     def test_session_updated(self):

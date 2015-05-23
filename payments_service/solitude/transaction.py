@@ -1,6 +1,8 @@
 import logging
+import uuid
 
 from payments_service import solitude
+from payments_service.solitude import api
 from payments_service.solitude import constants
 
 log = logging.getLogger(__name__)
@@ -13,6 +15,7 @@ class Transaction(object):
         self.session = session
         self.id = self.session.get(self.key, None)
         self.api = solitude.api()
+        self.uid_pay = None
 
     def create(self, user, plan_id, **kwargs):
         """
@@ -31,11 +34,13 @@ class Transaction(object):
             'seller_product': product['resource_uri'],
             'seller': product['seller'],
             'status': constants.STATUS_STARTED,
-            'type': constants.TYPE_PAYMENT
+            'type': constants.TYPE_PAYMENT,
+            'uid_pay': str(uuid.uuid4())
         }
         data.update(**kwargs)
         res = self.api.generic.transaction.post(data)
 
+        self.uid_pay = data['uid_pay']
         self.id = self.session[self.key] = res['resource_pk']
         log.debug('Created transaction: {0}'.format(self.id))
 

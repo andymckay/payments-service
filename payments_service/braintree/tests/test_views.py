@@ -1,3 +1,5 @@
+import mock
+
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
 
@@ -97,6 +99,7 @@ class TestSubscribe(TransactionTestCase):
         self.solitude.braintree.subscription.post.assert_called_with({
             'paymethod': pay_method_uri,
             'plan': self.plan_id,
+            'id': mock.ANY
         })
 
     def test_with_existing_pay_method(self):
@@ -110,6 +113,7 @@ class TestSubscribe(TransactionTestCase):
         self.solitude.braintree.subscription.post.assert_called_with({
             'paymethod': pay_method_uri,
             'plan': self.plan_id,
+            'id': mock.ANY
         })
 
     def test_too_many_pay_methods(self):
@@ -155,7 +159,8 @@ class TestSubscribe(TransactionTestCase):
             'provider': constants.PROVIDER_BRAINTREE,
             'buyer': '/generic/buyer/1234/',
             'seller': '/generic/seller/123/',
-            'type': constants.TYPE_PAYMENT
+            'type': constants.TYPE_PAYMENT,
+            'uid_pay': mock.ANY
         })
 
     def test_transaction_succeeded(self):
