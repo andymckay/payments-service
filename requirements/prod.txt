@@ -50,8 +50,8 @@ oauthlib==0.7.2
 # sha256: PWMqzIaGoHullsTeJTJxG3s2D4jECiiIE5WqIUn718g
 oauth2==1.5.211
 
-# sha256: jvMK5LLSNmbmzADT1pZl6W6mfir4f09zkvWi2jvjcvo
-payments-config==0.0.8
+# sha256: p-dFNRHnA-r7F-I8Q1WU7K78lXZCJ24Ezunq6KQ7pVU
+payments-config==0.0.9
 
 # sha256: aFwGTOdTFr29NSNqh8a_kNNJvdW6ReHLWaaHs6A1DcY
 python-dateutil==1.5
